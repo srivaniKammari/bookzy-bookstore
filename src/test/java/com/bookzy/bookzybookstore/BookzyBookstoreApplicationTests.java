@@ -7,7 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class BookzyBookstoreApplicationTests {
 
 	@Test
-	void contextLoads() {
-	}
+    public void dummyTest() {
+        assertTrue(true);
+    }
 
 }
