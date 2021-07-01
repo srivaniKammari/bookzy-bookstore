@@ -42,7 +42,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			
--<plugin>
+<plugin>
 
 <groupId>org.apache.maven.plugins</groupId>
 
@@ -51,15 +51,15 @@
 <version>${maven-failsafe-plugin.version}</version>
 
 
--<executions>
+<executions>
 
 
--<execution>
+<execution>
 
 <id>integration-test</id>
 
 
--<goals>
+<goals>
 
 <goal>integration-test</goal>
 
@@ -74,17 +74,17 @@
 </plugin>
 
 
--<plugin>
+<plugin>
 
 <artifactId>maven-surefire-plugin</artifactId>
 
 <version>2.22.0</version>
 
 
--<dependencies>
+<dependencies>
 
 
--<dependency>
+<dependency>
 
 <groupId>org.ow2.asm</groupId>
 
