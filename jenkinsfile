@@ -7,13 +7,13 @@ pipeline {
       }
     }
 
-    stage('Compile') {
-      steps {
-        sh '''mvn clean
-mvn compile'''
-      }
-    }
-
+     stage("Maven Build"){
+       steps{
+            sh "mvn clean package"
+            sh "mv target/*.war target/mywebapp.war"
+             }
+            }
+            
     stage('Test') {
       steps {
         sh 'mvn test'
@@ -33,9 +33,15 @@ mvn compile'''
     }
   stage('deploy to tomcat') {
       steps {
-      deploy adapters: [tomcat7(credentialsId: '3939ec90-51d0-4cc6-bd33-d499e375dc03', path: '', 
-        url: 'http://machine3.test.com:8080')], contextPath: 'app2', war: '**/*.war'
-      }
+      sshagent(['tomcat-dev1']) {
+          sh """
+          scp -o StrictHostKeyChecking=no target/myweb.war  
+          ubuntu@yourip:/opt/tomcat/webapps/
+          ssh ubuntu@yourip /opt/tomcat/bin/shutdown.sh
+          ssh ubuntu@yourip /opt/tomcat/bin/startup.sh
+           """
+           }
+     }
     }
   }
 }
